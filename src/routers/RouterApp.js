@@ -15,7 +15,7 @@ const RouterApp = () => {
         <Switch>
           <Route exact path="/login" component={LoginScreen} />
           <Route exact path="/" component={CalendarScreen} />
-          <Redirect to="/" />
+          <Redirect to="/" component={CalendarScreen} />
         </Switch>
       </div>
     </Router>

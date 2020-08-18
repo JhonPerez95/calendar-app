@@ -1,12 +1,12 @@
 # FrontEnd de la App Calendar
 
-Se utilizo tecnologias como:
+### Se utilizo tecnologias como:
 
-#### React JS (Hook's)
-
-#### Redux
-
-#### Bootstrap
+- React JS (Hook's)
+- Redux
+- Bootstrap
+- react-big-calendar
+- Moment.js
 
 ## Instalar dependencias
 
