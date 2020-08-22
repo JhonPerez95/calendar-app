@@ -13,12 +13,13 @@ import CalendarEvent from './CalendarEvent';
 import { uiOpenModal } from '../../redux/actions/uiActions';
 import { eventSetActive } from '../../redux/actions/eventsActions';
 import AddNewFab from '../ui/AddNewFab';
+import DeleteEventFab from '../ui/DeleteEventFab';
 
 moment.locale('es');
 const localizer = momentLocalizer(moment);
 
 const CalendarScreen = () => {
-  const { events } = useSelector((state) => state.calendar);
+  const { events, activeEvent } = useSelector((state) => state.calendar);
   const dispatch = useDispatch();
 
   const [lastView, setLastView] = useState(
@@ -68,8 +69,9 @@ const CalendarScreen = () => {
           event: CalendarEvent,
         }}
       />
-      <AddNewFab />
       <CalendarModal />
+      <AddNewFab />
+      {activeEvent && <DeleteEventFab />}
     </div>
   );
 };
