@@ -11,7 +11,10 @@ import Navbar from '../ui/Navbar';
 import { messages } from '../../helpers/calendar-messagges-es';
 import CalendarEvent from './CalendarEvent';
 import { uiOpenModal } from '../../redux/actions/uiActions';
-import { eventSetActive } from '../../redux/actions/eventsActions';
+import {
+  eventSetActive,
+  eventClearActive,
+} from '../../redux/actions/eventsActions';
 import AddNewFab from '../ui/AddNewFab';
 import DeleteEventFab from '../ui/DeleteEventFab';
 
@@ -36,6 +39,10 @@ const CalendarScreen = () => {
   const onViewChange = (e) => {
     setLastView(e);
     localStorage.setItem('lastView', e);
+  };
+
+  const handleOnSelectEvent = () => {
+    dispatch(eventClearActive());
   };
 
   // Style
@@ -64,6 +71,8 @@ const CalendarScreen = () => {
         onSelectEvent={onSelectEvent}
         onView={onViewChange}
         view={lastView}
+        onSelectSlot={handleOnSelectEvent}
+        selectable={true}
         eventPropGetter={eventStyleGetter}
         components={{
           event: CalendarEvent,
