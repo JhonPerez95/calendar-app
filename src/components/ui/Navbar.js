@@ -1,14 +1,18 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { startLogout } from '../../redux/actions/authActions';
 
 const Navbar = () => {
-  const history = useHistory();
+  const { name } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
   const handleLogout = () => {
-    history.push('/login');
+    dispatch(startLogout());
   };
   return (
     <div className="navbar navbar-dark bg-dark mb-4">
-      <span className="navbar-brand">Pedro</span>
+      <span className="navbar-brand">{name}</span>
       <button className=" btn btn-outline-danger" onClick={handleLogout}>
         <i className="fas fa-sign-out-alt"></i>
         <span> Salir</span>

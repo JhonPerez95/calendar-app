@@ -4,11 +4,8 @@ import Swal from 'sweetalert2';
 
 export const startLogin = (email, password) => {
   return async (dispatch) => {
-    console.log(email, password);
     const res = await fetchNoToken('auth', { email, password }, 'POST');
     const body = await res.json();
-
-    console.log(body);
 
     if (body.ok) {
       localStorage.setItem('token', body.token);
@@ -44,16 +41,20 @@ export const startCheking = () => {
     const res = await fetchToken('auth/renew');
     const body = await res.json();
 
-    console.log(body);
-
     if (body.ok) {
       localStorage.setItem('token', body.token);
       localStorage.setItem('token-init', new Date().getTime());
       dispatch(login(body.user));
     } else {
-      Swal.fire('Error!', body.msg, 'error');
       dispatch(checking());
     }
+  };
+};
+
+export const startLogout = () => {
+  return (dispatch) => {
+    localStorage.clear();
+    dispatch(logout());
   };
 };
 
@@ -74,3 +75,9 @@ const register = (user) => {
 const checking = () => ({
   type: types.authCheckingFinish,
 });
+
+const logout = () => {
+  return {
+    type: types.authLogout,
+  };
+};
