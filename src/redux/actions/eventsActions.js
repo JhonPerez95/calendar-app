@@ -35,6 +35,12 @@ const eventLoader = (events) => {
   };
 };
 
+export const eventLogut = () => {
+  return {
+    type: types.eventLogout,
+  };
+};
+
 export const eventStartAddEvent = (evento) => {
   return async (dispatch, getState) => {
     const { uid, name } = getState().auth;

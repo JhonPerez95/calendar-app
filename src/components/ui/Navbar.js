@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { startLogout } from '../../redux/actions/authActions';
+import { eventLogut } from '../../redux/actions/eventsActions';
 
 const Navbar = () => {
   const { name } = useSelector((state) => state.auth);
@@ -9,6 +10,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(startLogout());
+    dispatch(eventLogut());
   };
   return (
     <div className="navbar navbar-dark bg-dark mb-4">
