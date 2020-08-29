@@ -9,7 +9,7 @@ import PrivateRoutes from './PrivateRoutes';
 import PublicRoutes from './PublicRoutes';
 
 const RouterApp = () => {
-  const { checking, name } = useSelector((state) => state.auth);
+  const { checking, uid } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,15 +28,15 @@ const RouterApp = () => {
             exact
             path="/login"
             component={LoginScreen}
-            isAuth={!!name}
+            isAuth={!!uid}
           />
           <PrivateRoutes
             exact
             path="/"
             component={CalendarScreen}
-            isAuth={!!name}
+            isAuth={!!uid}
           />
-          <Redirect to="/" component={CalendarScreen} />
+          <Redirect to="/" />
         </Switch>
       </div>
     </Router>

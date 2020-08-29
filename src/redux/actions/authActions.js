@@ -6,6 +6,7 @@ export const startLogin = (email, password) => {
   return async (dispatch) => {
     const res = await fetchNoToken('auth', { email, password }, 'POST');
     const body = await res.json();
+    console.log(body);
 
     if (body.ok) {
       localStorage.setItem('token', body.token);
@@ -40,11 +41,13 @@ export const startCheking = () => {
   return async (dispatch) => {
     const res = await fetchToken('auth/renew');
     const body = await res.json();
+    // console.log(body);
 
     if (body.ok) {
       localStorage.setItem('token', body.token);
       localStorage.setItem('token-init', new Date().getTime());
-      dispatch(login(body.user));
+
+      dispatch(login({ uid: body.user.uid, name: body.user.name }));
     } else {
       dispatch(checking());
     }

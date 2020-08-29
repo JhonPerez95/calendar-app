@@ -3,10 +3,12 @@ export const types = {
   uiCloseModal: '[Ui] Close Modal',
 
   eventAddNew: '[Event] Add new event',
+  eventStartAddNew: '[Event] Start Add new event',
   eventSetActive: '[Event] Set Active event',
   eventClearActive: '[Event] Clear Active event',
   eventUpdate: '[Event] Update  event',
   eventDeleted: '[Event] Deleted  event',
+  eventLoader: '[Event] Loaded enevents',
 
   authChecking: '[Auth] Checking login state',
   authCheckingFinish: '[Auth] Finish login state',

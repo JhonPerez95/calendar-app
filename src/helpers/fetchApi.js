@@ -22,6 +22,7 @@ export const fetchToken = (endPoint, data, method = 'GET') => {
 
   if (method === 'GET') {
     return fetch(urlApi, {
+      method,
       headers: {
         'x-token': token,
       },
