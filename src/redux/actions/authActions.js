@@ -6,7 +6,6 @@ export const startLogin = (email, password) => {
   return async (dispatch) => {
     const res = await fetchNoToken('auth', { email, password }, 'POST');
     const body = await res.json();
-    console.log(body);
 
     if (body.ok) {
       localStorage.setItem('token', body.token);

@@ -1,7 +1,7 @@
 import { types } from '../types/types';
 import { fetchToken } from '../../helpers/fetchApi';
 import Swal from 'sweetalert2';
-import { prepareEvents } from '../../helpers/prepareEvents';
+import { prepareEvents, prepareEvent } from '../../helpers/prepareEvents';
 
 const eventAddNew = (event) => {
   return { type: types.eventAddNew, payload: event };
@@ -15,16 +15,23 @@ export const eventClearActive = () => {
   return { type: types.eventClearActive };
 };
 
-export const eventUpdated = (event) => {
+const eventUpdated = (event) => {
   return {
     type: types.eventUpdate,
     payload: event,
   };
 };
 
-export const eventDeleted = () => {
+const eventDeleted = () => {
   return {
     type: types.eventDeleted,
+  };
+};
+
+const eventLoader = (events) => {
+  return {
+    type: types.eventLoader,
+    payload: events,
   };
 };
 
@@ -38,7 +45,8 @@ export const eventStartAddEvent = (evento) => {
 
       if (body.ok) {
         evento = { ...body.data, user: { uid, name } };
-        dispatch(eventAddNew(evento));
+        const e = prepareEvent(evento);
+        dispatch(eventAddNew(e));
       } else {
         console.log(body);
         Swal.fire('Error!!', 'Valida si ingreso todos los campos', 'error');
@@ -68,9 +76,37 @@ export const eventStartLoading = () => {
   };
 };
 
-const eventLoader = (events) => {
-  return {
-    type: types.eventLoader,
-    payload: events,
+export const eventStartUpdate = (event) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetchToken(`event/${event.id}`, event, 'PUT');
+      const body = await res.json();
+
+      if (body.ok) {
+        dispatch(eventUpdated(event));
+      } else {
+        Swal.fire('Error!', body.msg, 'error');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const eventStartDeleted = () => {
+  return async (dispatch, getState) => {
+    const { id } = getState().calendar.activeEvent;
+    try {
+      const res = await fetchToken(`event/${id}`, {}, 'DELETE');
+      const body = await res.json();
+
+      if (body.ok) {
+        dispatch(eventDeleted());
+      } else {
+        Swal.fire('Error!', body.msg, 'error');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 };

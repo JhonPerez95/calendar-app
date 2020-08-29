@@ -7,3 +7,9 @@ export const prepareEvents = (events) => {
     end: moment(item.end).toDate(),
   }));
 };
+
+export const prepareEvent = (event) => ({
+  ...event,
+  start: moment(event.start).toDate(),
+  end: moment(event.end).toDate(),
+});
