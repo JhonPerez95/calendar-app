@@ -48,13 +48,12 @@ export const eventStartAddEvent = (evento) => {
     try {
       const res = await fetchToken('event/', evento, 'POST');
       const body = await res.json();
-
+      console.log(body);
       if (body.ok) {
         evento = { ...body.data, user: { uid, name } };
         const e = prepareEvent(evento);
         dispatch(eventAddNew(e));
       } else {
-        console.log(body);
         Swal.fire('Error!!', 'Valida si ingreso todos los campos', 'error');
       }
     } catch (error) {
