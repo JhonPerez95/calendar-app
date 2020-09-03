@@ -14,7 +14,7 @@
 
 # Backend de la App Calendar
 
-### Link del API montada en Heroku:
+### Link de producion montada en Heroku:
 
 https://backend-calendar-node.herokuapp.com/
 
