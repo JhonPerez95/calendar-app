@@ -12,7 +12,7 @@ export const startLogin = (email, password) => {
       localStorage.setItem('token-init', new Date().getTime());
       dispatch(login(body.user));
     } else {
-      Swal.fire('Error!', body.msg, 'error');
+      Swal.fire('Error!', body.msg || 'Password incorrecta !!', 'error');
     }
   };
 };
@@ -40,7 +40,6 @@ export const startCheking = () => {
   return async (dispatch) => {
     const res = await fetchToken('auth/renew');
     const body = await res.json();
-    // console.log(body);
 
     if (body.ok) {
       localStorage.setItem('token', body.token);
