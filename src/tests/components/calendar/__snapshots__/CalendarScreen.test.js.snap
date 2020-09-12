@@ -290,10 +290,10 @@ exports[`Test the component CalendarScreen should render correct 1`] = `
             className="rbc-day-bg"
           />
           <div
-            className="rbc-day-bg rbc-today"
+            className="rbc-day-bg"
           />
           <div
-            className="rbc-day-bg"
+            className="rbc-day-bg rbc-today"
           />
           <div
             className="rbc-day-bg"
@@ -350,7 +350,7 @@ exports[`Test the component CalendarScreen should render correct 1`] = `
               </a>
             </div>
             <div
-              className="rbc-date-cell rbc-now rbc-current"
+              className="rbc-date-cell"
               key="header_4"
             >
               <a
@@ -361,7 +361,7 @@ exports[`Test the component CalendarScreen should render correct 1`] = `
               </a>
             </div>
             <div
-              className="rbc-date-cell"
+              className="rbc-date-cell rbc-now rbc-current"
               key="header_5"
             >
               <a
