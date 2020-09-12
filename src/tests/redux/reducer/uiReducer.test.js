@@ -1,7 +1,6 @@
 import '@testing-library/jest-dom';
 import { uiReducer } from '../../../redux/reducer/uiReducer';
-import { types } from '../../../redux/types/types';
-import { uiOpenModal } from '../../../redux/actions/uiActions';
+import { uiOpenModal, uiCloseModal } from '../../../redux/actions/uiActions';
 
 const initState = {};
 
@@ -13,13 +12,13 @@ describe('Tests the uiReducer', () => {
 
   test('should open and close modal', () => {
     const openAction = uiOpenModal();
-    const state = uiReducer(initState, openAction);
+    let state = uiReducer(initState, openAction);
 
     expect(state).toEqual({ modalOpen: true });
 
-    const closeAction = uiOpenModal();
-    const state = uiReducer(initState, closeAction);
+    const closeAction = uiCloseModal();
+    const stateClose = uiReducer(initState, closeAction);
 
-    expect(state).toEqual({ modalOpen: false });
+    expect(stateClose).toEqual({ modalOpen: false });
   });
 });
