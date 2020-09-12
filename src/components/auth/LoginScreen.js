@@ -31,7 +31,7 @@ const LoginScreen = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     if (rPassword1 !== rPassword2) {
-      Swal.fire('Error !', 'Las contraseñas no son iguales', 'error');
+     return Swal.fire('Error !', 'Las contraseñas no son iguales', 'error');
     }
     dispatch(startRegister(rName, rEmail, rPassword1));
   };
